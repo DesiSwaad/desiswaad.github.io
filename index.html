@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desi Swaad — Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-pale: #F5E6B8;
+    --black: #0A0A0A;
+    --black-soft: #111111;
+    --black-card: #161616;
+    --black-border: #222222;
+    --text-cream: #F5EDD8;
+    --text-muted: #9A8A6A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--text-cream);
+    font-family: 'EB Garamond', serif;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(201,168,76,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(201,168,76,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 0 60px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header {
+    text-align: center;
+    padding: 52px 32px 40px;
+    position: relative;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .brand-ornament {
+    font-size: 22px;
+    letter-spacing: 8px;
+    color: var(--gold);
+    margin-bottom: 12px;
+    opacity: 0.7;
+  }
+
+  .brand-name {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(38px, 8vw, 56px);
+    font-weight: 700;
+    background: linear-gradient(135deg, #C9A84C 0%, #F5E6B8 40%, #E8C96A 60%, #C9A84C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 6px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .brand-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+
+  .header-pills {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+  }
+
+  .pill {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.25);
+    color: var(--gold-pale);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-family: 'Cinzel', serif;
+  }
+
+  .section { padding: 40px 24px 0; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .section-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(201,168,76,0.4)); }
+  .section-line.reverse { background: linear-gradient(to left, transparent, rgba(201,168,76,0.4)); }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .product-card {
+    background: var(--black-card);
+    border: 1px solid var(--black-border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 12px;
+    position: relative;
+    transition: border-color 0.3s ease, transform 0.2s ease;
+    overflow: hidden;
+  }
+
+  .product-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    border-radius: 12px 0 0 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .product-card:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-1px); }
+  .product-card:hover::before { opacity: 1; }
+
+  .product-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-cream);
+    line-height: 1.2;
+  }
+
+  .price-block { text-align: right; flex-shrink: 0; }
+
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    justify-content: flex-end;
+    margin-bottom: 2px;
+  }
+
+  .price-amount { font-family: 'Cinzel', serif; font-size: 15px; font-weight: 600; color: var(--gold); }
+  .price-weight { font-size: 11px; color: var(--text-muted); letter-spacing: 0.5px; }
+  .product-ingredients { font-size: 13px; color: var(--text-muted); font-style: italic; line-height: 1.6; }
+
+  .product-card.hero {
+    background: linear-gradient(135deg, #1A1508 0%, #161616 50%, #0F1008 100%);
+    border-color: rgba(201,168,76,0.4);
+  }
+
+  .product-card.hero::before { opacity: 1; background: linear-gradient(to bottom, var(--gold-light), var(--gold)); width: 3px; }
+
+  .product-card.hero .product-name {
+    background: linear-gradient(135deg, #C9A84C, #F5E6B8, #E8C96A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--black);
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+
+  .superfood-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 20px;
+    padding: 3px 10px;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--gold-pale);
+    letter-spacing: 1px;
+  }
+
+  .ornament-divider { text-align: center; padding: 32px 0 8px; color: rgba(201,168,76,0.3); font-size: 18px; letter-spacing: 12px; }
+
+  .notes-section {
+    margin: 40px 24px 0;
+    background: var(--black-card);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .notes-section::before {
+    content: '✦';
+    position: absolute;
+    top: -20px; right: 24px;
+    font-size: 60px;
+    color: rgba(201,168,76,0.04);
+    pointer-events: none;
+  }
+
+  .notes-title { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .notes-text { font-size: 14px; color: var(--text-muted); line-height: 1.8; font-style: italic; }
+  .notes-text strong { color: var(--gold-pale); font-style: normal; }
+
+  .order-section { margin: 24px 24px 0; text-align: center; }
+  .order-title { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+
+  .order-btn {
+    display: block;
+    background: linear-gradient(135deg, #C9A84C 0%, #E8C96A 50%, #C9A84C 100%);
+    color: var(--black);
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    margin-bottom: 16px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .order-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  .contact-info { font-size: 14px; color: var(--text-muted); line-height: 2; }
+  .contact-info span { color: var(--gold-pale); }
+
+  .footer {
+    margin-top: 48px;
+    text-align: center;
+    padding: 28px 24px;
+    border-top: 1px solid var(--black-border);
+  }
+
+  .footer-brand { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 4px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; }
+  .footer-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: rgba(201,168,76,0.5); }
+
+  @media (max-width: 480px) {
+    .product-top { flex-direction: column; gap: 6px; }
+    .price-block { text-align: left; }
+    .price-row { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="brand-ornament">✦ ✦ ✦</div>
+    <div class="brand-name">DESI SWAAD</div>
+    <div class="brand-tagline">Crafted by a Food Technologist · Made with Love</div>
+    <div class="header-pills">
+      <span class="pill">100% Homemade</span>
+      <span class="pill">No Preservatives</span>
+      <span class="pill">Pan India Delivery</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-line reverse"></div>
+      <div class="section-title">🪔 Laddoo Legends 🪔</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="product-card hero">
+      <div class="hero-badge">⭐ Hero Product</div>
+      <div class="product-top">
+        <div class="product-name">Paushtik Laddoo</div>
+        <div class="price-block">
+          <div class="price-row"><span class="price-amount">₹370</span><span class="price-weight">/ 250g</span></div>
+          <div class="price-row"><span class="price-amount">₹700</span><span class="price-weight">/ 500g</span></div>
+          <div class="price-row"><span class="price-amount">₹1350</span><span class="price-weight">/ 1kg</span></div>
+        </div>
+      </div>
+      <div class="product-ingredients">Pumpkin seeds, Musk seed, Melon seeds, Poppy seeds, White pepper, Coconut, Nuts, Gram flour, Desi ghee, Gond, Makhana, Dhaga mishri / Jaggery, Desi khand, Cardamom</div>
+      <div class="superfood-count">✦ 13 Superfoods in every bite</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-top"><div class="product-name">Besan Laddoo</div><div class="price-block"><div class="price-row"><span class="price-amount">₹850</span><span class="price-weight">/ kg</span></div></div></div>
+      <div class="product-ingredients">Gram flour, Desi khand, Desi ghee, Cardamom, Nuts</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-top"><div class="product-name">Rawa Laddoo</div><div class="price-block"><div class="price-row"><span class="price-amount">₹800</span><span class="price-weight">/ kg</span></div></div></div>
+      <div class="product-ingredients">Semolina, Refined wheat flour, Desi khand, Desi ghee, Nuts, Cardamom</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-top"><div class="product-name">Boondi Laddoo</div><div class="price-block"><div class="price-row"><span class="price-amount">₹900</span><span class="price-weight">/ kg</span></div></div></div>
+      <div class="product-ingredients">Gram flour, Sugar, Desi ghee, Cardamom</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-top"><div class="product-name">Coconut Laddoo</div><div class="price-block"><div class="price-row"><span class="price-amount">₹850</span><span class="price-weight">/ kg</span></div></div></div>
+      <div class="product-ingredients">Coconut, Mawa, Desi ghee, Desi khand, Cardamom</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-top"><div class="product-name">Choorma Laddoo</div><div class="price-block"><div class="price-row"><span class="price-amount">₹900</span><span class="price-weight">/ kg</span></div></div></div>
+      <div class="product-ingredients">Wheat flour, Gram flour, Desi ghee, Desi khand, Mawa, Cardamom, Nuts</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-top"><div class="product-name">Gond Nutty Laddoo</div><div class="price-block"><div class="price-row"><span class="price-amount">₹1000</span><span class="price-weight">/ kg</span></div></div></div>
+      <div class="product-ingredients">Gond, Makhana, Dry fruits, Saunth, Desi khand, Desi ghee, Wheat flour</div>
+    </div>
+  </div>
+
+  <div class="ornament-divider">✦ ✦ ✦</div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-line reverse"></div>
+      <div class="section-title">👑 Shahi Mithai 👑</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-top"><div class="product-name">Shahi Seeds Barfi</div><div class="price-block"><div class="price-row"><span class="price-amount">₹400</span><span class="price-weight">/ 250g</span></div></div></div>
+      <div class="product-ingredients">Pumpkin seeds, Musk seed, Melon seeds, Desi ghee, Sugar, Cardamom</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-top">
+        <div class="product-name">Kaju Katli</div>
+        <div class="price-block">
+          <div class="price-row"><span class="price-amount">₹400</span><span class="price-weight">/ 250g</span></div>
+          <div class="price-row"><span class="price-amount">₹1400</span><span class="price-weight">/ kg</span></div>
+        </div>
+      </div>
+      <div class="product-ingredients">Cashews, Desi ghee, Sugar, Cardamom</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-top"><div class="product-name">Dates Bar</div><div class="price-block"><div class="price-row"><span class="price-amount">₹400</span><span class="price-weight">/ 250g</span></div></div></div>
+      <div class="product-ingredients">Dates, Dry fruits, Coconut, Seeds, Desi ghee, Cardamom, Saunth, Nutmeg</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-top"><div class="product-name">Gujiya</div><div class="price-block"><div class="price-row"><span class="price-amount">₹600</span><span class="price-weight">/ 500g</span></div></div></div>
+      <div class="product-ingredients">Semolina, Refined wheat flour, Mawa, Nuts, Coconut, Cardamom, Desi ghee</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-top"><div class="product-name">Shakarpare</div><div class="price-block"><div class="price-row"><span class="price-amount">₹230</span><span class="price-weight">/ 250g</span></div></div></div>
+      <div class="product-ingredients">Semolina, Refined wheat flour, Desi khaand / Jaggery, Desi ghee</div>
+    </div>
+  </div>
+
+  <div class="ornament-divider">✦ ✦ ✦</div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-line reverse"></div>
+      <div class="section-title">🍿 Desi Snack Corner 🍿</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-top"><div class="product-name">Layered Namakpare</div><div class="price-block"><div class="price-row"><span class="price-amount">₹220</span><span class="price-weight">/ 300g</span></div></div></div>
+      <div class="product-ingredients">Gram flour, Wheat flour, Rock salt, Mustard oil, Spices</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-top"><div class="product-name">Poha Namkeen</div><div class="price-block"><div class="price-row"><span class="price-amount">₹220</span><span class="price-weight">/ 250g</span></div></div></div>
+      <div class="product-ingredients">Poha, Sev, Cornflakes, Makhana, Spices, Herbs, Nuts</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-top"><div class="product-name">Besan Sev</div><div class="price-block"><div class="price-row"><span class="price-amount">₹220</span><span class="price-weight">/ 250g</span></div></div></div>
+      <div class="product-ingredients">Gram flour, Mustard oil, Spices</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-top"><div class="product-name">Khasta Kachori</div><div class="price-block"><div class="price-row"><span class="price-amount">₹220</span><span class="price-weight">/ 250g</span></div></div></div>
+      <div class="product-ingredients">Refined wheat flour, Semolina, Gram flour, Spices, Mustard oil</div>
+    </div>
+  </div>
+
+  <div class="notes-section">
+    <div class="notes-title">✦ Important Notes</div>
+    <div class="notes-text">
+      All sweets are prepared using <strong>Desi Khaand, Jaggery Powder or Dhaga Misri</strong> (during summer). Everything is <strong>handmade, pure and health-conscious</strong>. Homemade mawa is used in all mawa sweets. <strong>No preservatives. No artificial flavours. No shortcuts.</strong>
+    </div>
+  </div>
+
+  <div class="order-section" style="margin-top: 32px; padding: 0 24px;">
+    <div class="order-title">✦ Place Your Order ✦</div>
+    <a href="https://wa.me/qr/LBAC2UJ5LB62L1" class="order-btn">💬 Chat on WhatsApp to Order</a>
+    <div class="contact-info">
+      <span>🚚 Pan India Delivery Available</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">Desi Swaad</div>
+    <div class="footer-tagline">जब आए अपनों की याद, घर ले आए देसी स्वाद</div>
+  </div>
+
+</div>
+</body>
+</html>
